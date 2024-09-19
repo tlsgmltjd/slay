@@ -1,6 +1,6 @@
-package team.asteria.slay.domain.member.domain
+package team.asteria.slay.domain.user.domain
 
-import team.asteria.slay.domain.member.entity.enums.Role
+import team.asteria.slay.domain.user.entity.enums.Role
 
 data class User(
     val id: Long,

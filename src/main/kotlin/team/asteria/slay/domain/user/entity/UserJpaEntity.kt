@@ -1,7 +1,7 @@
-package team.asteria.slay.domain.member.entity
+package team.asteria.slay.domain.user.entity
 
 import jakarta.persistence.*
-import team.asteria.slay.domain.member.entity.enums.Role
+import team.asteria.slay.domain.user.entity.enums.Role
 
 @Entity
 @Table(name = "tb_user")

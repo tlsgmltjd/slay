@@ -1,8 +1,8 @@
-package team.asteria.slay.domain.member.mapper
+package team.asteria.slay.domain.user.mapper
 
 import org.springframework.stereotype.Component
-import team.asteria.slay.domain.member.domain.User
-import team.asteria.slay.domain.member.entity.UserJpaEntity
+import team.asteria.slay.domain.user.domain.User
+import team.asteria.slay.domain.user.entity.UserJpaEntity
 
 @Component
 class UserMapper {
