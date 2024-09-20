@@ -23,6 +23,12 @@ class SecurityConfig {
                 .requestMatchers("/**").permitAll()
         }
 
+        http.oauth2Login { oauth2Login ->
+            oauth2Login.authorizationEndpoint { authorizationEndpoint ->
+                authorizationEndpoint.baseUri("/auth/v3/oauth2/authorization")
+            }
+        }
+
         return http.build()
     }
 }

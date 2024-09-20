@@ -14,4 +14,11 @@ class UserPersistenceAdapter(
     override fun findByEmail(email: String): User? {
         return userRepository.findByEmail(email)?.let { userMapper.toDomain(it) }
     }
+
+    override fun save(user: User): User {
+        val userEntity = userMapper.toEntity(user)
+        val savedUserEntity = userRepository.save(userEntity)
+
+        return userMapper.toDomain(savedUserEntity)
+    }
 }
