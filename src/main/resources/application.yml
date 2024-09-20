@@ -29,3 +29,10 @@ spring:
             redirect-uri: http://localhost:8080/login/oauth2/code/google
             scope:
               - email
+
+jwt:
+  access-secret: ${JWT_ACCESS_SECRET}
+  refresh-secret: ${JWT_REFRESH_SECRET}
+  time:
+    access-exp: 10800
+    refresh-exp: 2592000
