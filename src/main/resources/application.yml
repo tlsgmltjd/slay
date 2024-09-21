@@ -19,16 +19,13 @@ spring:
       host: 127.0.0.1
       port: 6379
 
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: ${GOOGLE_CLIENT_ID}
-            client-secret: ${GOOGLE_CLIENT_SECRET}
-            redirect-uri: http://localhost:8080/login/oauth2/code/google
-            scope:
-              - email
+oauth:
+  google:
+    client-id: ${GOOGLE_CLIENT_ID}
+    client-secret: ${GOOGLE_CLIENT_SECRET}
+    token-url: ${GOOGLE_TOKEN_URL}
+    info-url: ${GOOGLE_INFO_URL}
+    redirect-url: 'http://localhost:8080/login/oauth2/code/google'
 
 jwt:
   access-secret: ${JWT_ACCESS_SECRET}
