@@ -19,10 +19,8 @@ class TokenGenerator(
 
     fun generateToken(userId: Long): TokenDto =
         TokenDto(
-            accessToken = generateAccessToken(userId),
-            refreshToken = generateRefreshToken(userId),
-            accessTokenExp = jwtExpTimeProperties.accessExp,
-            refreshTokenExp = jwtExpTimeProperties.refreshExp
+            accessToken = "Bearer ${generateAccessToken(userId)}",
+            refreshToken = "Bearer ${generateRefreshToken(userId)}",
         )
 
     fun generateAccessToken(userId: Long): String =

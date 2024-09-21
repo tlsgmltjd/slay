@@ -25,7 +25,7 @@ class TokenParser(
     }
 
     private fun getAccessTokenSubject(accessToken: String): String =
-        getTokenBody(accessToken, jwtProperties.accessSecret).subject
+        getTokenBody(accessToken.replace("Bearer", ""), jwtProperties.accessSecret).subject
 
     private fun getTokenBody(token: String, secret: Key): Claims =
         Jwts.parserBuilder()

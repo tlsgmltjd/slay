@@ -22,7 +22,7 @@ class LoginService(
     @Transactional
     override fun execute(reqDto: LoginReqDto): LoginResDto {
         val email = googleLoginFeignClientService.login(reqDto.code).email
-        val user = queryUserPort.findByEmail(email) ?: saveUserPort.save(User(email = email))
+        val user = findOrSaveUser(email)
 
         val tokenDto = tokenGenerator.generateToken(user.id!!)
 
@@ -31,4 +31,8 @@ class LoginService(
             refreshToken = tokenDto.refreshToken
         )
     }
+
+    private fun findOrSaveUser(email: String) =
+        queryUserPort.findByEmail(email) ?: saveUserPort.save(User(email = email))
+
 }
