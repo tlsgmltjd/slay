@@ -5,6 +5,7 @@ import team.asteria.slay.global.jwt.properties.OauthProperties
 import team.asteria.slay.infra.feign.client.GoogleOauthInfoFeignClient
 import team.asteria.slay.infra.feign.client.GoogleOauthTokenFeignClient
 import team.asteria.slay.infra.feign.dto.GoogleInfoResDto
+import team.asteria.slay.infra.feign.dto.GoogleTokenResDto
 
 @Service
 class GoogleLoginFeignClientService(
@@ -12,9 +13,24 @@ class GoogleLoginFeignClientService(
     private val googleOauthInfoFeignClient: GoogleOauthInfoFeignClient,
     private val oauthProperties: OauthProperties
 ) {
+
     fun login(code: String): GoogleInfoResDto {
-        val tokenDto = getToken(code)
-        return getInfo(tokenDto.accessToken)
+        val tokenDto: GoogleTokenResDto
+        val infoDto: GoogleInfoResDto
+
+        try {
+            tokenDto = getToken(code)
+        } catch (e: Exception) {
+            throw RuntimeException("google oauth access_token 정보를 요청 중 예외가 발생했습니다.")
+        }
+
+        try {
+            infoDto = getInfo(tokenDto.accessToken)
+        } catch (e: Exception) {
+            throw RuntimeException("google oauth 사용자 정보를 요청 중 예외가 발생했습니다.")
+        }
+
+        return infoDto
     }
 
     private fun getToken(code: String) =

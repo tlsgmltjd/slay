@@ -13,4 +13,9 @@ class GlobalExceptionHandler {
     fun expectedExceptionHandler(request: HttpServletRequest, ex: ExpectedException): CommonApiResponse<Nothing?> {
         return CommonApiResponse.error(ex.message, HttpStatus.BAD_REQUEST)
     }
+
+    @ExceptionHandler(RuntimeException::class)
+    fun unExpectedExceptionHandler(request: HttpServletRequest, ex: RuntimeException): CommonApiResponse<Nothing?> {
+        return CommonApiResponse.error(ex.message, HttpStatus.INTERNAL_SERVER_ERROR)
+    }
 }
