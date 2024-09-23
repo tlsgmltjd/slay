@@ -21,7 +21,7 @@ class LoginService(
 
     @Transactional
     override fun execute(reqDto: LoginReqDto): LoginResDto {
-        val email = googleLoginFeignClientService.login(reqDto.code).email
+        val email = googleLoginFeignClientService.login(reqDto.accessToken).email
         val user = findOrSaveUser(email)
 
         val tokenDto = tokenGenerator.generateToken(user.id!!)
